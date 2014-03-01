@@ -50,12 +50,15 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
+		compile "net.sf.ehcache:ehcache-core:2.4.6" //verwijderen van hibernate plugin
+		
     }
 
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.50"
 
+		
         // plugins for the compile step
         compile ":scaffolding:2.0.1"
         compile ':cache:1.1.1'
@@ -63,7 +66,6 @@ grails.project.dependency.resolution = {
 		compile ":mongodb:1.3.3"
 		
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.6"
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.10.2.2"
         runtime ":resources:1.2.1"

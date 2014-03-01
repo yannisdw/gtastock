@@ -1,7 +1,9 @@
 <html>
 <body>
 
-hello world!
+<g:each in="${entryList }" var="entry">
+	${entry}<br />
+</g:each>
 
 </body>
 
