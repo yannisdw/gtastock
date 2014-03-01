@@ -1,5 +1,7 @@
 package gtastock
 
+import grails.converters.JSON
+
 class StockEntryController {
 
 	def StockEntryService stockEntryService
@@ -8,7 +10,7 @@ class StockEntryController {
 		
 		def entries = stockEntryService.getStockData("WIZ")
 		
-		[entryList:entries]
+		render entries as JSON
 		
 	}
 }
