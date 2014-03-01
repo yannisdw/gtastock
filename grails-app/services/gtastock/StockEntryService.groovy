@@ -11,7 +11,7 @@ class StockEntryService {
 
 	def getStockData(def company) {
 		log.debug("find the stuff for company ${company}")
-		return StockEntry.findAllByShare(company, [max:100, sort: "timestamp", order: "desc"])
+		return StockEntry.findAllByShare(company, [max:10000, sort: "timestamp", order: "asc"])
 	}
 	
 	def save(StockEntry stockInfo) {
