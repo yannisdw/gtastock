@@ -6,7 +6,7 @@ class StockEntryController {
 	
     def index() { 
 		
-		def entries = stockEntryService.getStockData("AB")
+		def entries = stockEntryService.getStockData("WIZ")
 		
 		[entryList:entries]
 		

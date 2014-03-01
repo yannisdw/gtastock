@@ -2,7 +2,7 @@
 <body>
 
 <g:each in="${entryList }" var="entry">
-	${entry.share}<br />
+	${entry.share} - ${entry.timestamp } - ${entry.value }<br />
 </g:each>
 
 </body>

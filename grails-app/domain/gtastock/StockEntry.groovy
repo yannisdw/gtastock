@@ -8,7 +8,8 @@ class StockEntry {
 
 	ObjectId id
 	String share
-	Date timestamp
+	String timestamp
+	Date insertDate
 	double value
 	
 	static mapWith = "mongo"
