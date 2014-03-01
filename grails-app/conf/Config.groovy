@@ -83,9 +83,19 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+//geen versie bijhouden in mongo
+grails.mongo.default.mapping = {
+	version false
+}
+
 environments {
     development {
         grails.logging.jul.usebridge = true
+		
+		log4j = {
+			//services is een keyword voor services. zie http://grails.org/doc/latest/guide/conf.html#logging 
+			debug 'grails.app.services.gtastock.StockEntryService'
+		}
     }
     production {
         grails.logging.jul.usebridge = false
@@ -101,17 +111,17 @@ log4j = {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
 
-    debug  'org.codehaus.groovy.grails.web.servlet',        // controllers
+    error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            
            'org.codehaus.groovy.grails.commons',            // core / classloading
            'org.codehaus.groovy.grails.plugins',            // plugins
-           'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
            'org.springframework',
-           'org.hibernate',
-           'net.sf.ehcache.hibernate'
-		   
-	warning 'org.codehaus.groovy.grails.web.pages',          // GSP
+		   'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
-           'org.codehaus.groovy.grails.web.mapping'        // URL mapping	   
+           'org.codehaus.groovy.grails.web.mapping'        // URL mapping	  
+		   
+	debug 'grails.'		    
 }
+
+

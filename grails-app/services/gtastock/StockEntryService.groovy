@@ -6,11 +6,12 @@ import grails.transaction.Transactional
 class StockEntryService {
 
 	def getMostRecentStockEntryForCompany(def company) {
-		StockEntry.findByShare(company, [max: 1, sort: "timestamp", order: "desc"])
+		StockEntry.findAllByShare(company, [max: 1, sort: "timestamp", order: "desc"])
 	}
 
 	def getStockData(def company) {
-		StockEntry.findByShare(company, max:100)
+		log.debug("find the stuff for company ${company}")
+		return StockEntry.findAllByShare(company, [max:100])
 	}
 	
 	def save(StockEntry stockInfo) {
