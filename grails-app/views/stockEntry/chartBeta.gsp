@@ -31,15 +31,20 @@ var stockApp = angular.module('stockApp', [])
 stockApp.factory('stockFactory', function($http) {
 	
 	var factory = {};
-	factory.getCompanies = function(callback) {
-		$http.get('http://localhost:8080/GTAStock/stockEntry/allCompanies').success(callback);
+	factory.getCompanies = function() {
+		
+		
+		return $http.get('http://localhost:8080/GTAStock/stockEntry/allCompanies').then(
+				function(result) { 
+					return result.data;
+				});
 	};
 
 	return factory;
 });
 stockApp.controller('StockController',function ($scope, stockFactory) {
-	stockFactory.getCompanies(function(companies){
-		console.log("getCompanies")
+	stockFactory.getCompanies().then(function(companies){
+		console.log("getCompanies: " + companies)
 		$scope.companies = companies;
 	}); 
 	
