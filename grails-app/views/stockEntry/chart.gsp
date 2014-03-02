@@ -54,7 +54,8 @@
 
 <div id="container" style="width:90%; height:600px; float:left"></div>
 
-<div data-ng-app="" data-ng-init="companies=['AMU',
+<div data-ng-app="" data-ng-init="companies=[
+	'AMU',
 	'BDG',
 	'BET',
 	'BFA',
@@ -100,8 +101,6 @@
 </div>
 
 <script>
-
-
 
 var convertToRightFormat = function(data) {
 	var objarr = new Array();
@@ -198,22 +197,8 @@ $.getJSON("${createLinkTo( dir:'/') }stockEntry?company="+comp, function(data) {
 }
 
 $(function() {
-
-	
 	haalDataOp('WIZ')
-	
-
 });
-
-function toonAlert() {
-	alert("geklikt op " )
-}
-
-$(document).ready(function() {
-	console.log("ready")
-})
-
-
 
 </script>
 

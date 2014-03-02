@@ -20,4 +20,14 @@ class StockEntryController {
 	def chart() {
 		
 	}
+	
+	def chartBeta() {
+		
+	}
+	
+	def allCompanies() {
+		def resp = stockEntryService.getAllCompanies() as JSON
+		log.info(resp)
+		render resp
+	}
 }

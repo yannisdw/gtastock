@@ -96,6 +96,7 @@ environments {
 		log4j = {
 			//services is een keyword voor services. zie http://grails.org/doc/latest/guide/conf.html#logging 
 			debug 'grails.app.services.gtastock.StockEntryService'
+			debug 'grails.app.controllers.gtastock.StockEntryController'
 		}
     }
     production {

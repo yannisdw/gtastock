@@ -14,6 +14,11 @@ class StockEntryService {
 		return StockEntry.findAllByShare(company, [max:10000, sort: "timestamp", order: "asc"])
 	}
 	
+	def getAllCompanies() {
+		def t = StockEntry.where {}.projections {distinct 'share'}
+		return t.list()
+	}
+	
 	def save(StockEntry stockInfo) {
 		stockInfo.save()
 	}
