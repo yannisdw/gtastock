@@ -28,17 +28,20 @@
 </div>
 <script>
 var stockApp = angular.module('stockApp', [])
-stockApp.factory('stockFactory', function($timeout) {
+stockApp.factory('stockFactory', function($q) {
 	
 	var factory = {};
-	factory.getCompanies = function(callback) {
-		callback(['ABC', 'def', 'ghi', 'jklm', 'nopqrst', 'uv', 'wx', 'yz']);
+	factory.getCompanies = function() {
+		var deferred = $q.defer();
+		deferred.resolve(['ABC', 'def', 'ghi', 'jklm', 'nopqrst', 'uv', 'wx', 'yz']);
+		return deferred.promise;
+		
 	};
 
 	return factory;
 });
 stockApp.controller('StockController',function ($scope, stockFactory) {
-	stockFactory.getCompanies(function(companies){
+	stockFactory.getCompanies().then(function(companies){
 		console.log("getCompanies")
 		$scope.companies = companies;
 	}); 
