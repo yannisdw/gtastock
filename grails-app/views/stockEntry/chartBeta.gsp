@@ -28,38 +28,27 @@
 </div>
 <script>
 var stockApp = angular.module('stockApp', [])
-.factory('stockFactory', function($http) {
-	return {
-		getCompanies: function() {
-			return $http.get('http://localhost:8080/GTAStock/stockEntry/allCompanies')
-					.success(function(result) {
-<%--						console.log("resultaat: " + result)--%>
-						return result.data;
-					})
-					.error(function(data, status, headers, config) {
-						console.log("fout" + data + " " + status)
-					});
-			}
-		}
+stockApp.factory('stockFactory', function($timeout) {
 	
-	})
-.controller('StockController',function ($scope, stockFactory, $http) {
-		
-	$scope.selected = undefined;
-	$scope.companies = undefined;
-	
+	var factory = {};
+	factory.getCompanies = function(callback) {
+		callback(['ABC', 'def', 'ghi', 'jklm', 'nopqrst', 'uv', 'wx', 'yz']);
+	};
 
+	return factory;
+});
+stockApp.controller('StockController',function ($scope, stockFactory) {
+	stockFactory.getCompanies(function(companies){
+		console.log("getCompanies")
+		$scope.companies = companies;
+	}); 
+	
+	$scope.selected = undefined;
+	/*
 	$scope.getcompanies = function() {
-		
-		$http.get('http://localhost:8080/GTAStock/stockEntry/allCompanies').success(function(data) {
-			console.log(data);
-			$scope.companies = data;
-		});
-		
-	}
-/*
-	$scope.getCompanies = function() {
+		console.log("call getcompanies")
 		return stockFactory.getCompanies();
+		
 	}*/
 
 	$scope.getStockForCompany = function(company) {
