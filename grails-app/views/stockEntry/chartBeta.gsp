@@ -28,20 +28,17 @@
 </div>
 <script>
 var stockApp = angular.module('stockApp', [])
-stockApp.factory('stockFactory', function($q) {
+stockApp.factory('stockFactory', function($http) {
 	
 	var factory = {};
-	factory.getCompanies = function() {
-		var deferred = $q.defer();
-		deferred.resolve(['ABC', 'def', 'ghi', 'jklm', 'nopqrst', 'uv', 'wx', 'yz']);
-		return deferred.promise;
-		
+	factory.getCompanies = function(callback) {
+		$http.get('http://localhost:8080/GTAStock/stockEntry/allCompanies').success(callback);
 	};
 
 	return factory;
 });
 stockApp.controller('StockController',function ($scope, stockFactory) {
-	stockFactory.getCompanies().then(function(companies){
+	stockFactory.getCompanies(function(companies){
 		console.log("getCompanies")
 		$scope.companies = companies;
 	}); 
