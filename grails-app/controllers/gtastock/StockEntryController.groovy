@@ -23,6 +23,14 @@ class StockEntryController {
 		
 	}
 	
+	def company(String name) {
+		
+		def entries = stockEntryService.getStockData(name)
+				
+				render entries as JSON
+		
+	}
+	
 	def allCompanies() {
 		def resp = stockEntryService.getAllCompanies()
 		log.debug(resp)
