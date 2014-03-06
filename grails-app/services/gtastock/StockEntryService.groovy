@@ -31,6 +31,10 @@ class StockEntryService {
 //		return tos
 	}
 	
+	def createNewShareValue(int amount, double price, String playerName, String company) {
+		new ShareValue(playerName: playerName, buyingprice: price, amountbought: amount, symbol: company).save()
+	}
+	
 	def getStockDataForPlayer(def playerName) {
 		def shareValuesForPlayer = ShareValue.findAllByPlayerName(playerName)
 		def toObjects = shareValuesForPlayer.collect {

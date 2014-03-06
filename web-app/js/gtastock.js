@@ -1,6 +1,19 @@
 
 var stockApp = angular.module('stockApp', []);
 
+stockApp.filter('cutoffDouble', function() {
+	return function(value) {
+		var s = parseFloat(value).toFixed(2);
+		
+		var array = s.split('.');
+		
+		var dottedFirst = array[0].split('').reverse().join('').match(/.{1,3}/g).join('.').split('').reverse().join('')
+		
+		
+		return dottedFirst + "," + array[1];
+	}
+});
+
 stockApp.factory('stockFactory', function($http, $q) {
 	
 	var factory = {};
@@ -33,11 +46,14 @@ stockApp.factory('stockFactory', function($http, $q) {
 	factory.haalSpelersOp = function() {
 		var deferred = $q.defer();
 		$http.get('allPlayerNames').success(function(data) {
-			console.log('spelers: ' + data)
 			deferred.resolve(data);
 		});
 		return deferred.promise;
 	};
+	
+	factory.addToPortefeuille = function(playerName, company, amount, price) {
+		$http.post('createStockForPlayer', {'playerName': playerName, 'company':company, 'amount':amount, 'price':price});
+	}
 	
 	return factory;
 });
@@ -46,9 +62,17 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 	$scope.selected = undefined;
 	$scope.data = undefined;
 	$scope.playerNames = undefined;
-	$scope.selectedPlayer = 'Trevor'
+	$scope.selectedPlayer = 'Trevor';
 	$scope.portefeuilleVanGeselecteerdeSpeler = undefined;
-		
+	$scope.inputOfDisplayItems = ['display', 'input'];
+	$scope.inputOfDisplay = 	$scope.inputOfDisplayItems[0];
+	
+	
+	/*form*/
+	$scope.company = 'comp';
+	$scope.amount = 1000;
+	$scope.pricePerShare = 3.5;
+	
 	$scope.getStockForCompany = function(company) {
 		getStock(company);
 		$scope.selected = company;
@@ -63,13 +87,16 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 
 	var spelersProm = stockFactory.haalSpelersOp();
 	spelersProm.then(function(data) {
-		console.log('data in controller(haalSpelersOp): ' + data)
 		$scope.playerNames = data;
 	});
 	
+	var currentSpeler = stockFactory.haalStockOpVoorSpeler('Trevor');
+	currentSpeler.then(function(data){
+		$scope.portefeuilleVanGeselecteerdeSpeler = data;
+	}) ;
+	
 	$scope.toonSpelerStock = function(spelersnaam) {
 		$scope.selectedPlayer = spelersnaam;
-		console.log(spelersnaam + ' is nu actief');
 
 		var prom = stockFactory.haalStockOpVoorSpeler(spelersnaam);
 		prom.then(function(data) {
@@ -77,6 +104,23 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 		});
 		
 	};
+	
+	$scope.showVoegStockToe = function() {
+		$scope.inputOfDisplay = 'input';
+		
+	}
+	
+	$scope.voegStockToe = function(company, amount, price) {
+		
+		console.log("player:" + $scope.selectedPlayer+" - company: " + company + " - amount bought: "+amount + " - price per share:" +price)
+		stockFactory.addToPortefeuille($scope.selectedPlayer, company, amount,price);
+		$scope.inputOfDisplay = 'display';
+		toonSpelerStock($scope.selectedPlayer)
+	}
+	
+	$scope.cancelVoegStockToe = function() {
+		$scope.inputOfDisplay = 'display';
+	}
 	
 	function getStock(company) {
 		var prom2 = stockFactory.haalDataOp(company);

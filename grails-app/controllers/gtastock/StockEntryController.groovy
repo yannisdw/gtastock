@@ -23,6 +23,13 @@ class StockEntryController {
 
 	}
 
+	def createStockForPlayer() {
+		def body = request.JSON
+		
+		stockEntryService.createNewShareValue(body.amount.toInteger(), body.price.toDouble(), body.playerName, body.company)
+		response.status = 200
+	}
+	
 	def stockDataForPlayer(String playerName) {
 		def t = stockEntryService.getStockDataForPlayer(playerName)
 		render t as JSON
