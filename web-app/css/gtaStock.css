@@ -1,0 +1,12 @@
+@CHARSET "US-ASCII";
+
+.nav {
+	margin-left:20px;
+	background-color: blue
+}
+
+.menuItem {
+	float: left;
+	font-size: larger;
+	margin-right: 10px
+}

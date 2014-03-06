@@ -24,7 +24,7 @@ stockApp.factory('stockFactory', function($http, $q) {
 	
 	factory.haalSpelersOp = function() {
 		var deferred = $q.defer();
-		$http.get('spelers').success(function(data) {
+		$http.get('allPlayerNames').success(function(data) {
 			console.log('spelers: ' + data)
 			deferred.resolve(data);
 		});
@@ -37,8 +37,7 @@ stockApp.factory('stockFactory', function($http, $q) {
 stockApp.controller('StockController',function ($scope, stockFactory) {
 	$scope.selected = undefined;
 	$scope.data = undefined;
-	$scope.spelers = undefined;
-	$scope.activeshares = undefined;
+	$scope.playerNames = undefined;
 	
 	$scope.getStockForCompany = function(company) {
 		getStock(company);
@@ -52,12 +51,11 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 		$scope.selected = data[0];
 	});
 
-//	var spelersProm = stockFactory.haalSpelersOp();
-//	spelersProm.then(function(data) {
-//		console.log('data in controller(haalSpelersOp): ' + data)
-//		$scope.activeshares = data;
-//		$scope.spelers = data;
-//	});
+	var spelersProm = stockFactory.haalSpelersOp();
+	spelersProm.then(function(data) {
+		console.log('data in controller(haalSpelersOp): ' + data)
+		$scope.playerNames = data;
+	});
 	
 	function getStock(company) {
 		var prom2 = stockFactory.haalDataOp(company);
