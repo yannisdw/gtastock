@@ -7,7 +7,7 @@ stockApp.factory('stockFactory', function($http, $q) {
 	
 	factory.getCompanies = function() {
 		var deferred = $q.defer();
-		$http.get('allCompanies').success(function(data){ //relatief tov stockEntry/
+		$http.get('allCompanyNames').success(function(data){ //relatief tov stockEntry/
 			deferred.resolve(data); 
 		});
 		return deferred.promise;
@@ -52,12 +52,12 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 		$scope.selected = data[0];
 	});
 
-	var spelersProm = stockFactory.haalSpelersOp();
-	spelersProm.then(function(data) {
-		console.log('data in controller(haalSpelersOp): ' + data)
-		$scope.activeshares = data;
-		$scope.spelers = data;
-	});
+//	var spelersProm = stockFactory.haalSpelersOp();
+//	spelersProm.then(function(data) {
+//		console.log('data in controller(haalSpelersOp): ' + data)
+//		$scope.activeshares = data;
+//		$scope.spelers = data;
+//	});
 	
 	function getStock(company) {
 		var prom2 = stockFactory.haalDataOp(company);

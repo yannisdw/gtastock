@@ -1,6 +1,6 @@
 import grails.converters.JSON
 import gtastock.StockEntry
-import gtastock.to.PlayerStockTO
+import gtastock.to.*
 
 class BootStrap {
 
@@ -20,6 +20,12 @@ class BootStrap {
 			o['currentprice'] = it.currentValue
 			o['amountbought'] = it.amountBought
 			o['symbol'] = it.stockName
+			return o
+		}
+		
+		JSON.registerObjectMarshaller(PlayerNameTO) {
+			def o = [:]
+			o['name'] = it.name
 			return o
 		}
     }

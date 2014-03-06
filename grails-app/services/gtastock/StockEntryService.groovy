@@ -1,6 +1,7 @@
 package gtastock
 
 import grails.transaction.Transactional
+import gtastock.to.PlayerNameTO
 import gtastock.to.PlayerStockTO
 
 
@@ -12,21 +13,26 @@ class StockEntryService {
 	}
 
 	def getStockData(def company) {
-//		log.debug("find the stuff for company ${company}")
 		return StockEntry.findAllByShare(company, [max:100000, sort: "timestamp", order: "asc"])
 	}
 	
 	def getSpelers() {
-		def t = ShareValue.where {}.projections {distinct 'playerName'}
-		return t.list()
+		
+		def spelernamen = ShareValue.where {}.projections {distinct 'playerName'}
+		return spelernamen.list()
+//		def tos = spelernamen.collect {
+//			def to = new PlayerNameTO()
+//			to.name = it
+//			to
+//		}
+//		
+//		log.debug('tos:' + tos)
+//		
+//		return tos
 	}
 	
 	def getStockDataForPlayer(def playerName) {
 		def shareValuesForPlayer = ShareValue.findAllByPlayerName(playerName)
-		
-		
-		def tos = new ArrayList()
-				
 		def toObjects = shareValuesForPlayer.collect {
 			PlayerStockTO t = new PlayerStockTO()
 			t.amountBought = it.amountbought
@@ -36,12 +42,11 @@ class StockEntryService {
 			t.currentValue = v
 			t
 		}
-		log.info toObjects
 		return toObjects
 		
 	}
 	
-	def getAllCompanies() {
+	def getAllCompanyNames() {
 		def t = StockEntry.where {}.projections {distinct 'share'}
 		return t.list()
 	}
