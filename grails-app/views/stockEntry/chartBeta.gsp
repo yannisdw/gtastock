@@ -7,7 +7,7 @@
 
 	<div ng-app="stockApp" ng-controller="StockController">
 
-		<div style="float: left; width: 5%">
+		<div id="companies">
 
 			<span data-ng-repeat="company in companies"
 				style="margin-left: 10px; margin-right: 10px"> <span
@@ -16,24 +16,25 @@
 
 		</div>
 
-		<div style="float: left; width: 75%">
-			<div id="container" style="height: 600px;"></div>
+		<div id="maincontent">
+			<div id="container"></div>
 			<div>Geselecteerd bedrijf: {{selected}}</div>
 		</div>
 
 
-		<div style="float: left; width: 20%">
-			<div style="margin-top: 20px">
-			
+		<div id="portefeuille">
+		<div style="margin-left: 20px">
 			<div class="nav">
-			<div data-ng-repeat="player in playerNames" >
-			
-				<div class="menuItem">{{player}}</div>			
+				<div data-ng-repeat="player in playerNames" >
+				
+					<span class="menuItem" ng:class="{true:'selected', false:''}[player==selectedPlayer]" ng-click="toonSpelerStock(player)">{{player}}</span>			
+				
+				</div>
 			
 			</div>
+			<div style="width:100%; position:relative">
+			<div id="spelersportefeuille"> {{portefeuilleVanGeselecteerdeSpeler}}</div>
 			</div>
-			
-			
 			</div>
 		</div>
 	</div>

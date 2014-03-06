@@ -1,12 +1,43 @@
 @CHARSET "US-ASCII";
 
 .nav {
-	margin-left:20px;
-	background-color: blue
+	height: 40px
 }
 
 .menuItem {
 	float: left;
 	font-size: larger;
-	margin-right: 10px
+	margin-right: 10px;
+}
+
+.selected {
+}
+
+.menuItem.selected {
+	color: white;
+	background-color: black;
+	padding: 5px;
+	padding-bottom: 25px;	
+}
+
+#portefeuille {
+	float: left; 
+	width: 20%;
+	margin-top: 20px
+}
+
+#companies {
+	float: left; width: 5%
+}
+
+#maincontent {
+	float: left; width: 75%
+}
+
+#container {
+	height: 600px;
+}
+
+#spelersportefeuille {
+	background-color: red; position:absolute; width:100%
 }

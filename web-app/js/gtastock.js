@@ -22,6 +22,14 @@ stockApp.factory('stockFactory', function($http, $q) {
 
 	};
 	
+	factory.haalStockOpVoorSpeler = function(playerName) {
+		var deferred = $q.defer();
+		$http.get('stockDataForPlayer?playerName=' + playerName).success(function(data) {
+			deferred.resolve(data)
+		});
+		return deferred.promise
+	}
+	
 	factory.haalSpelersOp = function() {
 		var deferred = $q.defer();
 		$http.get('allPlayerNames').success(function(data) {
@@ -38,7 +46,9 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 	$scope.selected = undefined;
 	$scope.data = undefined;
 	$scope.playerNames = undefined;
-	
+	$scope.selectedPlayer = 'Trevor'
+	$scope.portefeuilleVanGeselecteerdeSpeler = undefined;
+		
 	$scope.getStockForCompany = function(company) {
 		getStock(company);
 		$scope.selected = company;
@@ -56,6 +66,17 @@ stockApp.controller('StockController',function ($scope, stockFactory) {
 		console.log('data in controller(haalSpelersOp): ' + data)
 		$scope.playerNames = data;
 	});
+	
+	$scope.toonSpelerStock = function(spelersnaam) {
+		$scope.selectedPlayer = spelersnaam;
+		console.log(spelersnaam + ' is nu actief');
+
+		var prom = stockFactory.haalStockOpVoorSpeler(spelersnaam);
+		prom.then(function(data) {
+			$scope.portefeuilleVanGeselecteerdeSpeler = data;
+		});
+		
+	};
 	
 	function getStock(company) {
 		var prom2 = stockFactory.haalDataOp(company);
