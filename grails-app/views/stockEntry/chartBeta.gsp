@@ -1,75 +1,63 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='gtaStock.css'/>">
+<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='starter-template.css'/>">
 </head>
 
 <body>
 
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<div class="container">
+<div class="starter-template">
+<div class="row">
+
 <!-- start app -->
 	<div ng-app="stockApp" ng-controller="StockController">
 	<!-- companies -->
+	<div class="col-md-2">
 	<div id="companies">
-
-		<span data-ng-repeat="company in companies"
-			style="margin-left: 10px; margin-right: 10px"> <span
-			ng-click="getStockForCompany(company)">{{company}}</span><br>
-		</span>
-
+		<ul class="list-unstyled">
+			<li data-ng-repeat="company in companies"
+				style="height: 20px"> <span class="clickable"
+				ng-click="getStockForCompany(company)">
+				<div>{{company}}</div></span><br>
+			</li>
+		</ul>
+	</div>
 	</div>
 	<!-- end companies -->
 
 <!-- chart -->
+	<div class="col-md-10">
 	<div id="maincontent">
 		<div id="container"></div>
 		<div>Geselecteerd bedrijf: {{selected}}</div>
 	</div>
+	</div>
 <!-- end chart -->
 
-<!-- portefeuille -->
-	<div id="portefeuille">
-	<div style="margin-left: 20px">
-		<div class="nav">
-			<div data-ng-repeat="player in playerNames" >
-				<span class="menuItem" ng:class="{true:'selected', false:''}[player==selectedPlayer]" ng-click="toonSpelerStock(player)">{{player}}</span>			
-			</div>
-			<div ng-click="showVoegStockToe()">add</div>
-		</div>
 
-		<div style="width:100%; position:relative">
-		
-		<!-- portefeuille -->
-		<div id="spelersportefeuille"> 
-		
-		<div ng-switch on="inputOfDisplay">
-		<div id="inputform" ng-switch-when="input" class="animate-switch">
-			input form for {{selectedPlayer}} <br>
-			Bedrijf: <input type="text" ng-model="company"/><br>
-			Aantal: <input type="text" ng-model="amount"/><br>
-			Prijs per share: <input type="text" ng-model="pricePerShare"/><br>
-			
-			<input type="button" value="OK" ng-click="voegStockToe(company, amount, pricePerShare)"/>
-			<input type="button" value="Cancel" ng-click="cancelVoegStockToe()"/>
-		</div>
-
-		<div ng-switch-when="display" class="animate-switch">
-			<div data-ng-repeat="v in portefeuilleVanGeselecteerdeSpeler">
-				<b>{{v.symbol}}</b><br>
-				aankoopprijs: {{v.buyingprice | cutoffDouble}}<br>
-				huidige prijs: {{v.currentprice | cutoffDouble}}<br>
-				aantal gekocht: {{v.amountbought | cutoffDouble}}<br>
-				<br>
-				aankoop totaal: {{(v.buyingprice * v.amountbought) | cutoffDouble}}<br>
-				huidige totaal: {{(v.amountbought * v.currentprice) | cutoffDouble}}<br>
-				<br>
-				winst/verlies: {{ (v.amountbought * v.currentprice) - (v.buyingprice * v.amountbought) | cutoffDouble}}
-				
-				<hr>
-			</div>
-		</div>
-		</div>
-		
-		</div>
-		<!-- end portefeuille -->
 		
 		</div>
 		</div>
@@ -78,10 +66,15 @@
 	
 	</div>
 <!-- end app -->
+</div>
+</div>
+</div>
+
 	<g:javascript src="angular.min.js"></g:javascript>
 	<g:javascript src="jquery-1.8.3.min.js"></g:javascript>
 	<g:javascript src="highstock.js"></g:javascript>
 	<g:javascript src="gtastock.js"></g:javascript>
+	<g:javascript src="js/bootstrap.min.js"></g:javascript>
 	
 </body>
 
