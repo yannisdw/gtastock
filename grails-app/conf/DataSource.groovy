@@ -4,6 +4,27 @@ grails {
 		port = 27017
 		username = ""
 		password = ""
-		databaseName = "gta"
+//		databaseName = "gta"
 	}
+}
+
+environments {
+	
+	development {
+		grails {
+			mongo {
+				databaseName = "gtaDevelopment"
+			}
+		}
+	}
+	
+	production {
+		
+		grails {
+			mongo {
+				databaseName = "gta"
+			}
+		}
+	}
+	
 }

@@ -91,6 +91,10 @@ class StockEntryController {
 
 	}
 
+	def myBeta() {
+		
+	}
+	
 	def createStockForPlayer() {
 		def body = request.JSON
 		

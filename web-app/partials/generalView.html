@@ -1,0 +1,20 @@
+<div class="col-md-2">
+	<div id="companies">
+		<ul class="list-unstyled">
+			<li data-ng-repeat="company in companies" style="height: 20px">
+				<span class="clickable" ng-click="getStockForCompany(company)">
+					<div>{{company}}</div>
+			</span><br>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- end companies -->
+
+<!-- chart -->
+<div class="col-md-10">
+	<div>
+		<div id="container"></div>
+		<div>Geselecteerd bedrijf: {{selected}}</div>
+	</div>
+</div>
