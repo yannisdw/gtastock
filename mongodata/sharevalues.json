@@ -1,0 +1,6 @@
+{ "_id" : { "$oid" : "53187a5f30041ea90adbc023" }, "amountbought" : 13592550, "buyingprice" : 4.9, "playerName" : "Trevor", "symbol" : "TNK", "version" : 0 }
+{ "_id" : { "$oid" : "53187a5f30041ea90adbc024" }, "amountbought" : 13864406, "buyingprice" : 4.9, "playerName" : "Franklin", "symbol" : "TNK", "version" : 0 }
+{ "_id" : { "$oid" : "53187a5f30041ea90adbc025" }, "amountbought" : 253277, "buyingprice" : 1197.77, "playerName" : "Franklin", "symbol" : "SPU", "version" : 0 }
+{ "_id" : { "$oid" : "53187a5f30041ea90adbc026" }, "amountbought" : 4946342, "buyingprice" : 4.9, "playerName" : "Michael", "symbol" : "TNK", "version" : 0 }
+{ "_id" : { "$oid" : "5318d4cb3004ec18be566176" }, "amountbought" : 216687, "buyingprice" : 4.96, "playerName" : "Michael", "symbol" : "SHK", "version" : 0 }
+{ "_id" : { "$oid" : "531a161b3004b58cd6e65583" }, "amountbought" : 20993692, "buyingprice" : 9.09, "playerName" : "Franklin", "symbol" : "TNK", "version" : 0 }

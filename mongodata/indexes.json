@@ -1,0 +1,6 @@
+{ "v" : 1, "key" : { "_id" : 1 }, "ns" : "gtaDevelopment.runInfo", "name" : "_id_" }
+{ "v" : 1, "key" : { "_id" : 1 }, "ns" : "gtaDevelopment.stockinfo", "name" : "_id_" }
+{ "v" : 1, "key" : { "share" : 1, "timestamp" : -1 }, "ns" : "gtaDevelopment.stockinfo", "name" : "share_1_timestamp_-1" }
+{ "v" : 1, "key" : { "_id" : 1 }, "ns" : "gtaDevelopment.sharevalues", "name" : "_id_" }
+{ "v" : 1, "key" : { "_id" : 1 }, "ns" : "gtaDevelopment.registeredCompanies", "name" : "_id_" }
+{ "v" : 1, "key" : { "_id" : 1 }, "ns" : "gtaDevelopment.playerWallets", "name" : "_id_" }

@@ -1,0 +1,2 @@
+{ "_id" : { "$oid" : "531b0d2a3004a1742f974365" }, "naam" : "Franklin", "stocks" : [ { "bewegingen" : [ { "amount" : 100, "pricePerShare" : 3.5 }, { "amount" : 20, "pricePerShare" : 4 } ], "company" : "TNK" }, { "bewegingen" : [ { "amount" : 10000, "pricePerShare" : 400 } ], "company" : "SPU" } ], "version" : 1 }
+{ "_id" : { "$oid" : "531b0d2a3004a1742f974366" }, "naam" : "Michael", "stocks" : [ { "bewegingen" : [ { "amount" : 1000, "pricePerShare" : 4.6 } ], "company" : "TNK" } ], "version" : 1 }

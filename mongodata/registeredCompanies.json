@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "531afdc73004a1742f974348" }, "buyingPrice" : 4, "niceFluctuating" : true, "sellingPrice" : 10, "version" : 0 }
+{ "_id" : { "$oid" : "531afdc73004a1742f974349" }, "buyingPrice" : 5, "niceFluctuating" : true, "sellingPrice" : 15, "version" : 0 }
+{ "_id" : { "$oid" : "531afdc73004a1742f97434a" }, "buyingPrice" : 0.5, "niceFluctuating" : true, "sellingPrice" : 5, "version" : 0 }
+{ "_id" : { "$oid" : "531afdc73004a1742f97434b" }, "buyingPrice" : 1, "niceFluctuating" : true, "sellingPrice" : 3, "version" : 0 }
